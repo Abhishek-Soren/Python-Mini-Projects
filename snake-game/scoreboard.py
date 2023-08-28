@@ -25,3 +25,4 @@ class Score(Turtle):
 
     def update_scoreboard(self):
         self.write(f"SCORE : {self.score}", move=False, align=ALIGNMENT, font=FONT)
+
