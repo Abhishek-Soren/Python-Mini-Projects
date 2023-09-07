@@ -11,7 +11,7 @@ with open("./Input/Names/invited_names.txt", mode="rt") as names:
             text = letter_format.read()
             new_text = text.replace("[name]", curr_name)
 
-        with open(f"./Output/ReadyToSend/{curr_name}.txt", "w") as letter_send:
+        with open(f"./Output/ReadyToSend/letter_for_{curr_name}.txt", "w") as letter_send:
              letter_send.write(new_text)
 
 #Hint1: This method will help you: https://www.w3schools.com/python/ref_file_readlines.asp
