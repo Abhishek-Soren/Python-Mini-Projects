@@ -29,15 +29,13 @@ score = 0
 curr_state_list = []
 
 while game_should_continue:
-    answer = (screen.textinput(title=title_string, prompt="What's another state's name?"))
+    answer = (screen.textinput(title=title_string, prompt="What's another state's name?")).lower()
     another_state = string.capwords(answer)
-    print(another_state)
     if another_state in states:
         if another_state in curr_state_list:
             continue
 
         curr_state_list.append(another_state)
-        print("you are correct")
         score += 1
         title_string = f"{score}/50 States Correct"
 
@@ -47,9 +45,22 @@ while game_should_continue:
         tim.goto(x_value, y_value)
         tim.write(another_state, align="center")
 
-    if score == 3:
+    if score == 50:
+        game_should_continue = False
+
+    if answer == "exit":
         game_should_continue = False
 
     screen.update()
+
+not_guessed_states = {"state": [], }
+
+for state in states:
+    if state not in curr_state_list:
+        not_guessed_states["state"].append(state)
+
+df = pd.DataFrame(not_guessed_states)
+print(df)
+df.to_csv("not_guessed_states.csv")
 
 screen.exitonclick()
